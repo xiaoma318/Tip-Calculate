@@ -1,8 +1,8 @@
 Tip-Calculate
 =============
-### Time spent: 4 hours in total
+#### Time spent: 4 hours in total
 
-### Completed user stories:
+#### Completed user stories:
 
  * User is displayed the tip of specified percentage for specified entered amount
  * User enters the total amount of the transaction
