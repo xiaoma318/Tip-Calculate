@@ -10,118 +10,102 @@ import android.view.View.OnClickListener;
 import android.widget.*;
 
 public class MyActivity extends Activity {
-	Button b1, b2, b3;
-	TextView input, ret, total, each, eTip, num;
-	Spinner more;
+    Button b1, b2, b3;
+    TextView input, ret, total, each, eTip, num;
+    Spinner more;
     SeekBar split;
-	DecimalFormat df = new DecimalFormat("#.##");
-	int numOfPerson = 1;
-	double sum = 0, tip = 0;
+    DecimalFormat df = new DecimalFormat("#.##");
+    int numOfPerson = 1;
+    double sum = 0, tip = 0;
 
-	/**
-	 * Called when the activity is first created.
-	 */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		b1 = (Button) findViewById(R.id.button1);
-		b2 = (Button) findViewById(R.id.button2);
-		b3 = (Button) findViewById(R.id.button3);
-		input = (TextView) findViewById(R.id.inputText);
-		ret = (TextView) findViewById(R.id.textView2);
-		total = (TextView) findViewById(R.id.textView4);
-		each = (TextView) findViewById(R.id.TextView02);
-		eTip = (TextView) findViewById(R.id.TextView04);
-		num = (TextView) findViewById(R.id.textView7);
-		more = (Spinner) findViewById(R.id.spinner1);
+    /**
+     * Called when the activity is first created.
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        b1 = (Button) findViewById(R.id.button1);
+        b2 = (Button) findViewById(R.id.button2);
+        b3 = (Button) findViewById(R.id.button3);
+        input = (TextView) findViewById(R.id.inputText);
+        ret = (TextView) findViewById(R.id.textView2);
+        total = (TextView) findViewById(R.id.textView4);
+        each = (TextView) findViewById(R.id.TextView02);
+        eTip = (TextView) findViewById(R.id.TextView04);
+        num = (TextView) findViewById(R.id.textView7);
+        more = (Spinner) findViewById(R.id.spinner1);
         split = (SeekBar) findViewById(R.id.seekBar);
 
-		setListener();
-	}
+        setListener();
+    }
 
-	public void setListener() {
+    public void setListener() {
 
-		b1.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (!input.getText().toString().isEmpty()) {
-					tip = Double.parseDouble(input.getText().toString());
-					sum = tip * 1.1;
-//					ret.setText(df.format(tip * 0.1) + "");
-//					total.setText(df.format(tip * 1.1) + "");
-//					each.setText(df.format(tip * 1.1 / numOfPerson));
-//					eTip.setText(df.format(tip * 0.1 / numOfPerson));
-                    refresh(sum, tip*0.1,numOfPerson);
-				}
-			}
+        b1.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!input.getText().toString().isEmpty()) {
+                    tip = Double.parseDouble(input.getText().toString());
+                    sum = tip * 1.1;
+                    refresh(sum, tip * 0.1, numOfPerson);
+                }
+            }
 
-		});
+        });
 
-		b2.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (!input.getText().toString().isEmpty()) {
-					tip = Double.parseDouble(input.getText().toString());
-					sum = tip * 1.15;
-//					ret.setText(df.format(tip * 0.15) + "");
-//					total.setText(df.format(tip * 1.15) + "");
-//					each.setText(df.format(tip * 1.15 / numOfPerson));
-//					eTip.setText(df.format(tip * 0.15 / numOfPerson));
-                    refresh(sum, tip*0.15,numOfPerson);
-				}
-			}
+        b2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!input.getText().toString().isEmpty()) {
+                    tip = Double.parseDouble(input.getText().toString());
+                    sum = tip * 1.15;
+                    refresh(sum, tip * 0.15, numOfPerson);
+                }
+            }
 
-		});
+        });
 
-		b3.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (!input.getText().toString().isEmpty()) {
-					tip = Double.parseDouble(input.getText().toString());
-					sum = tip * 1.2;
-//					ret.setText(df.format(tip * 0.2) + "");
-//					total.setText(df.format(tip * 1.2) + "");
-//					each.setText(df.format(tip * 1.2 / numOfPerson));
-//					eTip.setText(df.format(tip * 0.2 / numOfPerson));
-                    refresh(sum, tip*0.2,numOfPerson);
-				}
-			}
+        b3.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!input.getText().toString().isEmpty()) {
+                    tip = Double.parseDouble(input.getText().toString());
+                    sum = tip * 1.2;
+                    refresh(sum, tip * 0.2, numOfPerson);
+                }
+            }
 
-		});
+        });
 
-		more.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        more.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				if (!input.getText().toString().isEmpty()) {
-				    tip = Double.parseDouble(input.getText().toString());
-					double percent = Double.parseDouble(more.getItemAtPosition(arg2).toString().split("%")[0]) / 100;
-					sum = tip * (1 + percent);
-//					ret.setText(df.format(tip * percent));
-//					total.setText(df.format(sum) + "");
-//					each.setText(df.format(sum / numOfPerson));
-//					eTip.setText(df.format(tip * percent / numOfPerson));
-                    refresh(sum, tip*percent,numOfPerson);
-				}
-			}
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                if (!input.getText().toString().isEmpty()) {
+                    tip = Double.parseDouble(input.getText().toString());
+                    double percent = Double.parseDouble(more.getItemAtPosition(arg2).toString().split("%")[0]) / 100;
+                    sum = tip * (1 + percent);
+                    refresh(sum, tip * percent, numOfPerson);
+                }
+            }
 
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
 
-			}
+            }
 
-		});
+        });
 
         split.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.e("SeeBar Value: ", progress+"");
-                num.setText((progress+1)+"");
+                Log.e("SeeBar Value: ", progress + "");
+                num.setText((progress + 1) + "");
                 numOfPerson = progress + 1;
-                refresh(sum, tip,numOfPerson);
+                refresh(sum, tip, numOfPerson);
             }
 
             @Override
@@ -136,9 +120,9 @@ public class MyActivity extends Activity {
         });
 
 
-	}
-    
-    public void refresh(double sum, double tip, int n){
+    }
+
+    public void refresh(double sum, double tip, int n) {
         ret.setText(df.format(tip));
         total.setText(df.format(sum));
         each.setText(df.format(sum / n));
